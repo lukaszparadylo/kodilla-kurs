@@ -38,8 +38,8 @@ public class InvoiceDaoTestSuite {
 
         invoiceDao.save(invoice);
 
-        int duration = invoice.getId();
-        Optional<Invoice> readInvoice = invoiceDao.findById(duration);
+        Integer id = invoice.getId();
+        Optional<Invoice> readInvoice = invoiceDao.findById(id);
         assertTrue(readInvoice.isPresent());
     }
 }

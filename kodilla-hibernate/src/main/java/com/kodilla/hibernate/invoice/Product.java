@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+//
 @Entity
 @Table(name = "PRODUCT")
 public final class Product {
