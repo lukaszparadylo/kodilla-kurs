@@ -4,10 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-//
+///
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.retrieveEmployeeSurname",
+                query = "FROM Employee WHERE lastname = :LASTNAME"
+        ),
+        @NamedQuery(
+                name = "Employee.retrieveEmployeeByAlmost3CharsOfSurname",
                 query = "FROM Employee WHERE lastname = :LASTNAME"
         )
 })

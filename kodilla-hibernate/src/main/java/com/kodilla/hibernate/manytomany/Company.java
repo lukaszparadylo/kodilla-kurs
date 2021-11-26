@@ -5,11 +5,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-//
-@NamedQuery(
-        name = "Company.retrieveCompanyBy3Char",
-        query = "FROM Company WHERE name LIKE :NAME"
-)
+///
+@NamedQueries({
+        @NamedQuery(
+                name = "Company.retrieveCompanyBy3Char",
+                query = "FROM Company WHERE name LIKE :NAME"
+        ),
+        @NamedQuery(
+                name = "Company.retrieveCompanyByAlmost3Chars",
+                query = "FROM Company WHERE name LIKE :NAME"
+        )
+})
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
