@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import java.util.List;
 
 @Service
@@ -37,7 +35,7 @@ public class DatabaseFacade {
     }
 
     public List<Employee> employeeByMinimum3Chars(String employeeName) {
-        return employeeDao.retrieveEmployeeSurname("%"+employeeName+"%");
+        return employeeDao.retrieveEmployeeByAlmost3CharsOfSurname("%"+employeeName+"%");
     }
 
     public boolean deleteCompanies(){

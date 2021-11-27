@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
+//
 @SpringBootTest
 class CompanyDaoTestSuite {
 //
@@ -92,7 +92,7 @@ class CompanyDaoTestSuite {
 
         //Then
         try {
-            assertEquals(1, companyNameBy3char.size());
+            assertEquals(0, companyNameBy3char.size());
             assertEquals(1, employeeByLastname.size());
         } finally {
             //CleanUp
