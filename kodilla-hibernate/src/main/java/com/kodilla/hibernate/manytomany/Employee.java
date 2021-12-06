@@ -8,11 +8,11 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.retrieveEmployeeSurname",
-                query = "FROM Employee WHERE lastname = :LASTNAME"
+                query = "FROM Employee WHERE lastname LIKE :LASTNAME"
         ),
         @NamedQuery(
-                name = "Employee.retrieveEmployeeByAlmost3CharsOfSurname",
-                query = "FROM Employee WHERE lastname = :LASTNAME"
+                name = "Employee.retrieveEmployeeByAtLeast3CharsOfSurname",
+                query = "FROM Employee WHERE lastname LIKE :LASTNAME"
         )
 })
 @Entity

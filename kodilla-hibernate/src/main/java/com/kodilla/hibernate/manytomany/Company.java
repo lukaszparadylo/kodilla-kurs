@@ -12,7 +12,7 @@ import java.util.List;
                 query = "FROM Company WHERE name LIKE :NAME"
         ),
         @NamedQuery(
-                name = "Company.retrieveCompanyByAlmost3Chars",
+                name = "Company.retrieveCompanyByAtLeast3Chars",
                 query = "FROM Company WHERE name LIKE :NAME"
         )
 })
