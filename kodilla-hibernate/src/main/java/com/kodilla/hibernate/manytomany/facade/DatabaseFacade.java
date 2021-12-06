@@ -31,11 +31,11 @@ public class DatabaseFacade {
     }
 
     public List<Company> companyNameByMinimum3chars(String companyName) {
-        return companyDao.retrieveCompanyByAlmost3Chars("%"+companyName+"%");
+        return companyDao.retrieveCompanyByAtLeast3Chars("%"+companyName+"%");
     }
 
     public List<Employee> employeeByMinimum3Chars(String employeeName) {
-        return employeeDao.retrieveEmployeeByAlmost3CharsOfSurname("%"+employeeName+"%");
+        return employeeDao.retrieveEmployeeByAtLeast3CharsOfSurname("%"+employeeName+"%");
     }
 
     public boolean deleteCompanies(){
