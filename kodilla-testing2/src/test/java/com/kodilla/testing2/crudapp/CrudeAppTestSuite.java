@@ -8,9 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CrudeAppTestSuite {
@@ -29,6 +27,7 @@ public class CrudeAppTestSuite {
     public void cleanUpAfterTest() {
         driver.close();
     }
+
     @Test
     public String crateCrudAppTestTask() throws InterruptedException {
         final String XPATH_TASK_NAME = "//form[contains(@action,\"createTask\")]/fieldset[1]/input";
@@ -48,6 +47,7 @@ public class CrudeAppTestSuite {
         Thread.sleep(2000);
         return taskName;
     }
+
     private void sendTestTaskToTrello(String taskName) throws InterruptedException {
         driver.navigate().refresh();                                         // [1]
 
@@ -69,12 +69,13 @@ public class CrudeAppTestSuite {
                 });                                                            // [14]
         Thread.sleep(5000);
     }
+
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
         final String TRELLO_URL = "https://trello.com/login";
         boolean result = false;
         WebDriver driverTrello = WebDriverConfig.getDriver(WebDriverConfig.CHROME);	// [1]
         driverTrello.get(TRELLO_URL);                                                // [2]
-        //johndoe41135315
+
         driverTrello.findElement(By.id("user")).sendKeys("lukpar06110@wp.pl");		        // [3]
         driverTrello.findElement(By.id("password")).sendKeys("Trello,78()");		    // [4]
         WebElement el = driverTrello.findElement(By.id("login"));
@@ -99,10 +100,27 @@ public class CrudeAppTestSuite {
         driverTrello.close();
         return result;
     }
+
+    private void deleteTaskFromCRUDE(String taskName) throws InterruptedException {         // [1]
+        final String CRUDE_URL = "https://lukaszparadylo.github.io";
+        WebDriver driverCRUDE = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
+        driverCRUDE.get(CRUDE_URL);
+        Thread.sleep(4000);
+
+        driverCRUDE.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(a->a.findElements(By.xpath(".//p[contains(text(), \""+taskName+"\")]")).size()>0)
+                .map(b->b.findElement(By.xpath(".//div/fieldset[1]/button[4]")))
+                .forEach(WebElement::click);
+
+        Thread.sleep(4000);
+        driverCRUDE.close();
+    }
+
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = crateCrudAppTestTask();
         sendTestTaskToTrello(taskName);
-        assertTrue(checkTaskExistsInTrello(taskName));   // [1]
+        assertTrue(checkTaskExistsInTrello(taskName));
+        deleteTaskFromCRUDE(taskName);
     }
 }
